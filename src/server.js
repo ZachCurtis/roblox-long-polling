@@ -58,8 +58,9 @@ class LongPollingServer extends EventEmitter {
 	}
 
 	broadcast(target, data) {
-		this.connections.forEach((connection) => {
-			connection.send(target, data);
+
+        Object.keys(this.connections).forEach((connectionId) => {
+			this.connections[connectionId].send(target, data);
 		});
 	}
 
